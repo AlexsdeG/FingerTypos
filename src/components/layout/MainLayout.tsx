@@ -27,7 +27,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 
     if (disabled) {
       return (
-        <div className="flex flex-col items-center justify-center p-2 rounded-lg text-slate-700 cursor-not-allowed opacity-50">
+        <div className="w-full flex flex-col items-center justify-center p-2 rounded-lg text-slate-700 cursor-not-allowed opacity-50">
           <Icon size={24} className="mb-1" />
           <span className="text-xs font-medium">{label}</span>
         </div>
@@ -38,7 +38,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       <Link
         to={to}
         className={cn(
-          "flex flex-col items-center justify-center p-2 rounded-lg transition-colors",
+          "w-full flex flex-col items-center justify-center p-2 rounded-lg transition-colors",
           isActive
             ? 'text-brand-400 bg-brand-900/20'
             : 'text-slate-400 hover:text-brand-300 hover:bg-slate-800'
