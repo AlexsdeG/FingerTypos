@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Keyboard, BarChart2, User, Trophy, Settings, Dumbbell, Map, HelpCircle } from 'lucide-react';
+import { Keyboard, BarChart2, User, Settings, Dumbbell, Map, HelpCircle, Github } from 'lucide-react';
 import { useProfileStore } from '../../features/profile/store/profileStore';
 import { SettingsModal } from '../../features/profile/components/SettingsModal';
 import { HelpModal } from '../ui/HelpModal';
@@ -97,6 +97,16 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
             >
               <Settings size={24} />
             </button>
+
+            <a
+              href="https://github.com/AlexsdeG/FingerTypos"
+              target="_blank"
+              rel="noreferrer"
+              className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors focus:outline-none focus:bg-white/10"
+              title="GitHub Repository"
+            >
+              <Github size={24} />
+            </a>
           </div>
         </header>
       )}
