@@ -13,6 +13,7 @@ import { getCampaignLevels, getTrainingLevels } from '../../campaign/utils/level
 import { LevelConfig, ReplayEvent } from '../../../types';
 import { cn } from '../../../utils/cn';
 import { useGhostCursor } from '../hooks/useGhostCursor';
+import { playSound } from '../../../utils/sound';
 
 export const GameStage: React.FC = () => {
   const navigate = useNavigate();
@@ -137,6 +138,11 @@ export const GameStage: React.FC = () => {
   useEffect(() => {
     if (engine.isFinished && hasStarted && !hasSavedRef.current && levelConfig) {
       hasSavedRef.current = true;
+
+      // Play success sound
+      if (profile?.settings.soundEnabled ?? true) {
+        playSound('applause');
+      }
 
       const errorMap: Record<string, number> = {};
       engine.keystrokeHistory.forEach(k => {

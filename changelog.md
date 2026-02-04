@@ -1,6 +1,8 @@
 
 # Changelog
 
+## [0.2.3] - Added Sounds
+
 ## [0.0.22] - Strict Error Counting
 
 ### Improvements
