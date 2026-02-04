@@ -7,7 +7,7 @@ const SOUNDS = {
     src: ['/sounds/click.mp3', '/sounds/click.wav'],
     volume: 0.5,
     preload: true,
-    onloaderror: (_id, err) => {
+    onloaderror: (_id, _err) => {
       // Silently ignore missing files to prevent app crashes
       // console.warn('Audio file not found:', err); 
     }
@@ -16,7 +16,7 @@ const SOUNDS = {
     src: ['/sounds/error.mp3', '/sounds/error.wav'],
     volume: 0.5,
     preload: true,
-    onloaderror: (_id, err) => {
+    onloaderror: (_id, _err) => {
       // Silently ignore missing files
     }
   }),
@@ -28,8 +28,8 @@ export const playSound = (type: 'click' | 'error') => {
     if (sound && sound.state() === 'loaded') {
       sound.play();
     } else if (sound) {
-        // Attempt play even if loading state isn't perfect (Howler handles queueing)
-        sound.play();
+      // Attempt play even if loading state isn't perfect (Howler handles queueing)
+      sound.play();
     }
   } catch (e) {
     // Fail gracefully if audio context is blocked or files missing

@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Dumbbell, Trophy, Zap, Skull, Code2, Binary, Swords } from 'lucide-react';
 import { useProfileStore } from '../../profile/store/profileStore';
@@ -10,7 +10,7 @@ export const TrainingMenu = () => {
   const navigate = useNavigate();
   const { activeProfileId, profiles } = useProfileStore();
   const profile = activeProfileId ? profiles[activeProfileId] : null;
-  const [lengthSelection, setLengthSelection] = useState<Record<string, 'short'|'medium'|'long'>>({});
+  const [lengthSelection, setLengthSelection] = useState<Record<string, 'short' | 'medium' | 'long'>>({});
 
   if (!profile) return <div>Loading...</div>;
 
@@ -39,8 +39,8 @@ export const TrainingMenu = () => {
     return "hover:border-slate-500/50";
   };
 
-  const setLength = (levelId: string, len: 'short'|'medium'|'long') => {
-      setLengthSelection(prev => ({ ...prev, [levelId]: len }));
+  const setLength = (levelId: string, len: 'short' | 'medium' | 'long') => {
+    setLengthSelection(prev => ({ ...prev, [levelId]: len }));
   };
 
   const handleSelect = (levelId: string) => {
@@ -58,7 +58,7 @@ export const TrainingMenu = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-12">
         {levels.map((level) => {
           const currentLength = lengthSelection[level.id] || 'medium';
-          
+
           // Construct composite key for stats lookup
           const statsKey = `${level.id}_${currentLength}`;
           const stats = profile.trainingStats[statsKey];
@@ -72,7 +72,7 @@ export const TrainingMenu = () => {
                 getGradient(level.id)
               )}
             >
-              <div 
+              <div
                 className="p-8 cursor-pointer flex-1"
                 onClick={() => handleSelect(level.id)}
               >
@@ -83,7 +83,7 @@ export const TrainingMenu = () => {
                 <div className="relative z-10">
                   <h3 className="text-2xl font-bold text-white mb-2">{level.name}</h3>
                   <p className="text-slate-400 mb-6 max-w-[80%]">{level.description}</p>
-                  
+
                   <div className="flex items-center gap-4">
                     {bestWpm > 0 && (
                       <div className="px-3 py-1 bg-slate-900 rounded-lg border border-slate-700 text-sm text-brand-400 font-bold animate-in fade-in">
@@ -93,38 +93,38 @@ export const TrainingMenu = () => {
                   </div>
                 </div>
               </div>
-              
+
               {/* Length Selector Footer */}
               <div className="px-8 pb-6 pt-0 relative z-20">
-                  <div className="flex items-center gap-2 bg-slate-900/50 p-1 rounded-lg w-fit border border-slate-700/50" onClick={(e) => e.stopPropagation()}>
-                     <button 
-                       onClick={() => setLength(level.id, 'short')}
-                       className={cn(
-                         "px-3 py-1 text-xs font-bold rounded-md transition-colors", 
-                         currentLength === 'short' ? "bg-slate-700 text-white shadow-sm" : "text-slate-500 hover:text-slate-300"
-                       )}
-                     >
-                        Short
-                     </button>
-                     <button 
-                       onClick={() => setLength(level.id, 'medium')}
-                       className={cn(
-                         "px-3 py-1 text-xs font-bold rounded-md transition-colors", 
-                         currentLength === 'medium' ? "bg-slate-700 text-white shadow-sm" : "text-slate-500 hover:text-slate-300"
-                       )}
-                     >
-                        Medium
-                     </button>
-                     <button 
-                       onClick={() => setLength(level.id, 'long')}
-                       className={cn(
-                         "px-3 py-1 text-xs font-bold rounded-md transition-colors", 
-                         currentLength === 'long' ? "bg-slate-700 text-white shadow-sm" : "text-slate-500 hover:text-slate-300"
-                       )}
-                     >
-                        Long
-                     </button>
-                  </div>
+                <div className="flex items-center gap-2 bg-slate-900/50 p-1 rounded-lg w-fit border border-slate-700/50" onClick={(e) => e.stopPropagation()}>
+                  <button
+                    onClick={() => setLength(level.id, 'short')}
+                    className={cn(
+                      "px-3 py-1 text-xs font-bold rounded-md transition-colors",
+                      currentLength === 'short' ? "bg-slate-700 text-white shadow-sm" : "text-slate-500 hover:text-slate-300"
+                    )}
+                  >
+                    Short
+                  </button>
+                  <button
+                    onClick={() => setLength(level.id, 'medium')}
+                    className={cn(
+                      "px-3 py-1 text-xs font-bold rounded-md transition-colors",
+                      currentLength === 'medium' ? "bg-slate-700 text-white shadow-sm" : "text-slate-500 hover:text-slate-300"
+                    )}
+                  >
+                    Medium
+                  </button>
+                  <button
+                    onClick={() => setLength(level.id, 'long')}
+                    className={cn(
+                      "px-3 py-1 text-xs font-bold rounded-md transition-colors",
+                      currentLength === 'long' ? "bg-slate-700 text-white shadow-sm" : "text-slate-500 hover:text-slate-300"
+                    )}
+                  >
+                    Long
+                  </button>
+                </div>
               </div>
             </div>
           );

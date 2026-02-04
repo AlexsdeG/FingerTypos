@@ -7,18 +7,17 @@ import { playSound } from '../../../utils/sound';
 export const useTypingEngine = () => {
   const state = useGameStore();
   const { activeProfileId, profiles } = useProfileStore();
-  
+
   // Get Sound Settings
   const profile = activeProfileId ? profiles[activeProfileId] : null;
   const soundEnabled = profile?.settings.soundEnabled ?? true;
-  
-  const { 
-    isActive, 
+
+  const {
+    isActive,
     isPaused,
     isFinished,
-    text, 
-    typedText,
-    cursorIndex, 
+    text,
+    cursorIndex,
     handleKeyStroke,
     tickTimer,
     startGame,
@@ -57,14 +56,14 @@ export const useTypingEngine = () => {
 
     // Handle Backspace
     if (e.key === 'Backspace') {
-       handleKeyStroke('Backspace');
-       return; 
+      handleKeyStroke('Backspace');
+      return;
     }
 
     // Determine Input Char
     let inputChar = e.key;
     if (e.key === 'Enter') {
-        inputChar = '\n';
+      inputChar = '\n';
     }
 
     // Sound Logic: Check correctness before updating state
@@ -73,9 +72,9 @@ export const useTypingEngine = () => {
     const isCorrect = inputChar === expectedChar;
 
     if (soundEnabled) {
-        playSound(isCorrect ? 'click' : 'error');
+      playSound(isCorrect ? 'click' : 'error');
     }
-    
+
     // Pass the actual char string to the store
     handleKeyStroke(inputChar);
 

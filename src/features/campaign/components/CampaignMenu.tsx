@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Lock, Star, CheckCircle2, Play } from 'lucide-react';
 import { useProfileStore } from '../../profile/store/profileStore';
@@ -43,34 +42,34 @@ export const CampaignMenu = () => {
           return (
             <div key={tier} className="relative">
               <div className="flex items-center gap-4 mb-6">
-                 <div className="bg-brand-900/50 text-brand-300 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border border-brand-500/30">
-                   Tier {tier}
-                 </div>
-                 <h3 className="text-xl font-bold text-white">{firstLevel.tierName}</h3>
-                 {isTierLocked && (
-                   <div className="flex items-center gap-2 text-red-400 text-sm bg-red-900/20 px-3 py-1 rounded-lg border border-red-900/50">
-                     <Lock size={14} />
-                     <span>Requires Level {firstLevel.requiredLevel}</span>
-                   </div>
-                 )}
+                <div className="bg-brand-900/50 text-brand-300 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border border-brand-500/30">
+                  Tier {tier}
+                </div>
+                <h3 className="text-xl font-bold text-white">{firstLevel.tierName}</h3>
+                {isTierLocked && (
+                  <div className="flex items-center gap-2 text-red-400 text-sm bg-red-900/20 px-3 py-1 rounded-lg border border-red-900/50">
+                    <Lock size={14} />
+                    <span>Requires Level {firstLevel.requiredLevel}</span>
+                  </div>
+                )}
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {tierLevels.map((level, index) => {
                   const progress = profile.campaignProgress[level.id];
                   const stars = progress?.stars || 0;
-                  
+
                   // Level Locking Logic:
                   // 1. Tier must be unlocked
                   // 2. Previous level must be completed (at least 1 star)
                   // Exception: First level of a tier is unlocked if tier is unlocked.
                   let isLocked = isTierLocked;
                   if (!isLocked && index > 0) {
-                     const prevLevelId = tierLevels[index - 1].id;
-                     const prevProgress = profile.campaignProgress[prevLevelId];
-                     if (!prevProgress || prevProgress.stars < 1) {
-                        isLocked = true;
-                     }
+                    const prevLevelId = tierLevels[index - 1].id;
+                    const prevProgress = profile.campaignProgress[prevLevelId];
+                    if (!prevProgress || prevProgress.stars < 1) {
+                      isLocked = true;
+                    }
                   }
 
                   return (
@@ -80,31 +79,31 @@ export const CampaignMenu = () => {
                       onClick={() => handleLevelSelect(level.id)}
                       className={cn(
                         "group relative flex flex-col items-start p-5 rounded-xl border transition-all text-left",
-                        isLocked 
-                          ? "bg-slate-900/50 border-slate-800 opacity-70 cursor-not-allowed" 
+                        isLocked
+                          ? "bg-slate-900/50 border-slate-800 opacity-70 cursor-not-allowed"
                           : "bg-slate-800 border-slate-700 hover:border-brand-500 hover:bg-slate-750 shadow-lg"
                       )}
                     >
                       <div className="flex justify-between w-full mb-2">
-                         <span className={cn(
-                           "text-xs font-bold uppercase", 
-                           isLocked ? "text-slate-600" : "text-brand-400"
-                         )}>
-                           Level {index + 1}
-                         </span>
-                         {progress && !isLocked && (
-                            <div className="flex gap-0.5">
-                              {[1, 2, 3].map(s => (
-                                <Star 
-                                  key={s} 
-                                  size={14} 
-                                  className={s <= stars ? "fill-yellow-500 text-yellow-500" : "text-slate-700"} 
-                                />
-                              ))}
-                            </div>
-                         )}
+                        <span className={cn(
+                          "text-xs font-bold uppercase",
+                          isLocked ? "text-slate-600" : "text-brand-400"
+                        )}>
+                          Level {index + 1}
+                        </span>
+                        {progress && !isLocked && (
+                          <div className="flex gap-0.5">
+                            {[1, 2, 3].map(s => (
+                              <Star
+                                key={s}
+                                size={14}
+                                className={s <= stars ? "fill-yellow-500 text-yellow-500" : "text-slate-700"}
+                              />
+                            ))}
+                          </div>
+                        )}
                       </div>
-                      
+
                       <h4 className={cn("text-lg font-bold mb-1", isLocked ? "text-slate-500" : "text-white")}>
                         {level.name}
                       </h4>
@@ -118,15 +117,15 @@ export const CampaignMenu = () => {
                         </div>
                       ) : (
                         <div className="mt-auto pt-2 flex items-center gap-2 text-sm font-medium">
-                           {progress ? (
-                             <span className="text-emerald-400 flex items-center gap-1">
-                               <CheckCircle2 size={16} /> Best: {progress.bestWpm} WPM
-                             </span>
-                           ) : (
-                             <span className="text-brand-400 group-hover:text-brand-300 flex items-center gap-1">
-                               <Play size={16} /> Start
-                             </span>
-                           )}
+                          {progress ? (
+                            <span className="text-emerald-400 flex items-center gap-1">
+                              <CheckCircle2 size={16} /> Best: {progress.bestWpm} WPM
+                            </span>
+                          ) : (
+                            <span className="text-brand-400 group-hover:text-brand-300 flex items-center gap-1">
+                              <Play size={16} /> Start
+                            </span>
+                          )}
                         </div>
                       )}
                     </button>

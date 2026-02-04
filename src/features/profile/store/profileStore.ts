@@ -1,7 +1,7 @@
 
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { UserProfile, UserSettings, MatchHistory, LevelResult, ReplayEvent } from '../../../types';
+import { UserProfile, UserSettings, MatchHistory, ReplayEvent } from '../../../types';
 
 interface SessionResults {
   mode: 'campaign' | 'training';

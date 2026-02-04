@@ -1,12 +1,12 @@
 
 import React from 'react';
-import { 
-  AreaChart, 
-  Area, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
   ResponsiveContainer,
   ReferenceLine,
   ReferenceDot
@@ -32,15 +32,15 @@ const STD_DEV = 15;
 const SCALING_FACTOR = 500;
 
 const getDensity = (x: number) => {
-  return (1 / (STD_DEV * Math.sqrt(2 * Math.PI))) * 
-         Math.exp(-0.5 * Math.pow((x - MEAN_WPM) / STD_DEV, 2)) * 
-         SCALING_FACTOR;
+  return (1 / (STD_DEV * Math.sqrt(2 * Math.PI))) *
+    Math.exp(-0.5 * Math.pow((x - MEAN_WPM) / STD_DEV, 2)) *
+    SCALING_FACTOR;
 };
 
 const generateDistributionData = () => {
   const data = [];
   for (let x = 0; x <= 140; x += 5) {
-    data.push({ wpm: x, density: getDensity(x) }); 
+    data.push({ wpm: x, density: getDensity(x) });
   }
   return data;
 };
@@ -61,7 +61,7 @@ const calculatePercentile = (score: number) => {
   const x = Math.abs(z) / Math.sqrt(2);
   const t = 1.0 / (1.0 + p * x);
   const erf = 1.0 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.exp(-x * x);
-  
+
   const probability = 0.5 * (1.0 + sign * erf);
   return probability * 100;
 };
@@ -86,12 +86,12 @@ export const ResultsDashboard: React.FC<ResultsDashboardProps> = ({
   const formattedPercentile = percentile.toFixed(2);
   const userDensity = getDensity(effectiveWpm);
 
-  const headlineMain = isAboveAverage 
-    ? `Top ${formattedTop}%` 
+  const headlineMain = isAboveAverage
+    ? `Top ${formattedTop}%`
     : `Faster than ${formattedPercentile}%`;
-  
-  const subText = isAboveAverage 
-    ? `You are faster than ${formattedPercentile}% of users!` 
+
+  const subText = isAboveAverage
+    ? `You are faster than ${formattedPercentile}% of users!`
     : `Keep practicing to climb the ranks!`;
 
   // Time Formatting (mm:ss)
@@ -100,19 +100,19 @@ export const ResultsDashboard: React.FC<ResultsDashboardProps> = ({
   const timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
   // XP Progress Calculation
-  const { 
-    progressPercent, 
-    currentLevel, 
-    nextLevel, 
-    xpInLevel, 
-    xpRequiredForNext 
+  const {
+    progressPercent,
+    currentLevel,
+    nextLevel,
+    xpInLevel,
+    xpRequiredForNext
   } = getLevelProgress(totalXp);
-  
+
   const { title: rankTitle, division: rankDivision } = calculateRank(currentLevel);
 
   return (
     <div className="flex flex-col items-center justify-center w-full max-w-5xl mx-auto animate-in fade-in zoom-in duration-300">
-      
+
       {/* Header Badge */}
       <div className="mb-8 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-sm mb-4">
@@ -135,23 +135,23 @@ export const ResultsDashboard: React.FC<ResultsDashboardProps> = ({
             <div className="text-sm text-slate-400">Level {currentLevel}</div>
           </div>
           <div className="text-right">
-             <div className="text-sm font-medium text-brand-300">
-               +{xpEarned} XP
-             </div>
-             <div className="text-xs text-slate-500">
-               {Math.round(xpInLevel)} / {Math.round(xpRequiredForNext)} to Level {nextLevel}
-             </div>
+            <div className="text-sm font-medium text-brand-300">
+              +{xpEarned} XP
+            </div>
+            <div className="text-xs text-slate-500">
+              {Math.round(xpInLevel)} / {Math.round(xpRequiredForNext)} to Level {nextLevel}
+            </div>
           </div>
         </div>
-        
+
         {/* Bar Track */}
         <div className="h-4 bg-slate-900 rounded-full overflow-hidden border border-slate-700 relative">
-           <div 
-             className="h-full bg-brand-500 relative transition-all duration-1000 ease-out"
-             style={{ width: `${progressPercent}%` }}
-           >
-              <div className="absolute inset-0 bg-white/20 animate-pulse" />
-           </div>
+          <div
+            className="h-full bg-brand-500 relative transition-all duration-1000 ease-out"
+            style={{ width: `${progressPercent}%` }}
+          >
+            <div className="absolute inset-0 bg-white/20 animate-pulse" />
+          </div>
         </div>
       </div>
 
@@ -181,7 +181,7 @@ export const ResultsDashboard: React.FC<ResultsDashboardProps> = ({
           <div className="text-xs uppercase tracking-wider text-slate-500 font-semibold">Errors</div>
         </div>
 
-         <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 flex flex-col items-center">
+        <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 flex flex-col items-center">
           <div className="p-3 bg-yellow-900/30 rounded-full text-yellow-400 mb-2">
             <Star size={24} />
           </div>
@@ -206,48 +206,48 @@ export const ResultsDashboard: React.FC<ResultsDashboardProps> = ({
             <AreaChart data={DISTRIBUTION_DATA} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
               <defs>
                 <linearGradient id="colorWpm" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#0ea5e9" stopOpacity={0.3}/>
-                  <stop offset="95%" stopColor="#0ea5e9" stopOpacity={0}/>
+                  <stop offset="5%" stopColor="#0ea5e9" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="#0ea5e9" stopOpacity={0} />
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
-              <XAxis 
-                dataKey="wpm" 
-                type="number" 
+              <XAxis
+                dataKey="wpm"
+                type="number"
                 domain={[0, 140]}
-                stroke="#64748b" 
+                stroke="#64748b"
                 tickLine={false}
                 axisLine={false}
                 tickFormatter={(val) => `${val}`}
               />
               <YAxis hide />
-              <Tooltip 
+              <Tooltip
                 contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', color: '#f8fafc' }}
                 itemStyle={{ color: '#38bdf8' }}
-                formatter={(value: number) => [``, '']}
+                formatter={(_value: number) => [``, '']}
                 labelFormatter={(label) => `${label} WPM`}
                 filterNull={true}
               />
-              <Area 
-                type="monotone" 
-                dataKey="density" 
-                stroke="#0ea5e9" 
+              <Area
+                type="monotone"
+                dataKey="density"
+                stroke="#0ea5e9"
                 strokeWidth={2}
-                fillOpacity={1} 
-                fill="url(#colorWpm)" 
+                fillOpacity={1}
+                fill="url(#colorWpm)"
               />
               {/* Vertical line for Effective WPM */}
               <ReferenceLine x={effectiveWpm} stroke="#f59e0b" strokeDasharray="3 3">
                 {/* REMOVED LABEL "YOU" */}
               </ReferenceLine>
               {/* The colored dot on the user's Effective WPM */}
-              <ReferenceDot 
-                x={effectiveWpm} 
-                y={userDensity} 
-                r={6} 
-                fill="#f59e0b" 
-                stroke="#fff" 
-                strokeWidth={2} 
+              <ReferenceDot
+                x={effectiveWpm}
+                y={userDensity}
+                r={6}
+                fill="#f59e0b"
+                stroke="#fff"
+                strokeWidth={2}
               />
             </AreaChart>
           </ResponsiveContainer>
@@ -259,13 +259,13 @@ export const ResultsDashboard: React.FC<ResultsDashboardProps> = ({
 
       {/* Action Buttons */}
       <div className="flex gap-4">
-        <button 
+        <button
           onClick={onRestart}
           className="flex items-center gap-2 px-8 py-4 bg-white text-slate-900 hover:bg-slate-200 font-bold rounded-xl transition-all shadow-lg hover:scale-105"
         >
           <RotateCcw size={20} /> Play Again
         </button>
-        <button 
+        <button
           onClick={onHome}
           className="flex items-center gap-2 px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-xl border border-slate-700 transition-all hover:scale-105"
         >
