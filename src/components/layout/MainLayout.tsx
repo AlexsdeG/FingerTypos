@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Keyboard, BarChart2, User, Settings, Dumbbell, Map, HelpCircle, Github } from 'lucide-react';
+import { BarChart2, User, Settings, Dumbbell, Map, HelpCircle, Github } from 'lucide-react';
 import { useProfileStore } from '../../features/profile/store/profileStore';
 import { SettingsModal } from '../../features/profile/components/SettingsModal';
 import { HelpModal } from '../ui/HelpModal';
@@ -56,8 +56,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       {!isGameMode && (
         <header className="h-16 border-b border-slate-700 bg-dark-surface flex items-center justify-between px-6 sticky top-0 z-50">
           <div className="flex items-center gap-3">
-            <div className="bg-brand-500 p-2 rounded-lg">
-              <Keyboard className="text-white" size={24} />
+            <div className="flex items-center justify-center">
+              <img src="/FingerTypos_Logo.png" alt="FingerTypos Logo" className="w-10 h-10 object-contain rounded-lg shadow-lg shadow-brand-500/10" />
             </div>
             <h1 className="text-xl font-bold bg-gradient-to-r from-brand-300 to-brand-500 bg-clip-text text-transparent hidden md:block">
               FingerTypos
