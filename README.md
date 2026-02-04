@@ -1,11 +1,14 @@
-
 # FingerTypos - Advanced Touch Typing Tutor
+
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Click_Here-blue?style=for-the-badge)](https://fingertypos.pro-grammer.de/)
+
+![App Screenshot](https://github.com/AlexsdeG/FingerTypos/blob/main/FingerTypos.png)
 
 FingerTypos is a modular, privacy-first web application designed to help users master touch typing through adaptive learning, gamification, and advanced visualization techniques.
 
 Built with **React**, **TypeScript**, and **Zustand**.
 
-## 🚀 Features
+## 🚀 Features **([Demo](https://fingertypos.pro-grammer.de/))**
 
 ### 🧠 Adaptive Learning Engine
 *   **Procedural Generation:** Lessons are generated on-the-fly based on your skill level.
