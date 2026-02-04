@@ -2,7 +2,7 @@
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Click_Here-blue?style=for-the-badge)](https://fingertypos.pro-grammer.de/)
 
-![App Screenshot](https://github.com/AlexsdeG/FingerTypos/blob/main/FingerTypos.png)
+![App Screenshot](https://github.com/AlexsdeG/FingerTypos/blob/main/FingerTypos.jpg)
 
 FingerTypos is a modular, privacy-first web application designed to help users master touch typing through adaptive learning, gamification, and advanced visualization techniques.
 
